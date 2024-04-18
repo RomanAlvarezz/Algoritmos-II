@@ -72,6 +72,7 @@ restos' (e:l) n = (mod e n):(restos l n)
 --para mi no se puede con foldr
 --restos'' l n = foldr () _ l
 resto n x = x `mod` n
+resto1 n1 n2 x = (x `mod` n1) + n2
 
 restos'' l n = map (\x -> x `mod` n) l
 
