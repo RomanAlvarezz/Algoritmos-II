@@ -21,3 +21,45 @@ cambios' l = [xpos | (x, xpos) <- zip l [0..], (y, ypos) <- zip l [0..], ypos ==
 
 --prueba'::(Eq a) => a -> a
 --prueba' l = l
+
+
+
+
+--B)
+oblongoAux (x:y:[]) = [(x*y)]
+oblongoAux (x:y:l) = (x*y):(oblongoAux (y:l))
+oblongo 0 = error "El limite debe ser mayor a 0"
+oblongo n = oblongoAux ([1..n])
+
+oblongoAux' (x:y:l) 0 = [(x*y)]
+oblongoAux' (x:y:l) i = (x*y):(oblongoAux' (y:l) (i-1))
+oblongo' 0 = error "El limite debe ser mayor a 0"
+oblongo' n = oblongoAux' [1..] (n-1)
+
+oblongo'' limite = [x*y | (x, xpos) <- zip [1..limite] [0..], (y,ypos) <- zip [1..limite] [0..], xpos + 1 == ypos]
+--(x, xpos) <- zip l [0..], (y, ypos) <- zip l [0..]
+
+
+
+
+--C)
+divisores x = if x > 0 then [n | n <- [1..(x-1)], x `mod` n == 0] else error "Error numero invalido"
+abundantes limite = [x | x <- [1..limite], x < sum (divisores x)]
+
+
+
+
+--D) 
+
+repitoLetra _ 0 = []
+repitoLetra letra n = letra:(repitoLetra letra (n-1))
+
+tomopalabra cadena = concat (map (\ (letra,pos) -> repitoLetra letra pos) (zip cadena [1..]))
+
+eco cadena = concat [ repitoLetra letra pos | (letra,pos) <- zip cadena [1..] ]
+
+
+
+
+--E)
+multiplos n limite = if (n * _) < limite then (n * _):(multiplos n limite) 
