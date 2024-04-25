@@ -43,8 +43,12 @@ oblongo'' limite = [x*y | (x, xpos) <- zip [1..limite] [0..], (y,ypos) <- zip [1
 
 
 --C)
-divisores x = if x > 0 then [n | n <- [1..(x-1)], x `mod` n == 0] else error "Error numero invalido"
-abundantes limite = [x | x <- [1..limite], x < sum (divisores x)]
+divisores' x | x == 0 = error "Infinito"
+             | x > 0 = [n | n <- [1..(x-1)], x `mod` n == 0] 
+             | x < 0 = [n | n <- [1..((x+1)*(-1))], x `mod` n == 0] 
+divisores x = [n | n <- [1..(x-1)], x `mod` n == 0]
+
+abundantes = [x | x <- [1..], x < sum (divisores x)]
 
 
 
@@ -62,4 +66,27 @@ eco cadena = concat [ repitoLetra letra pos | (letra,pos) <- zip cadena [1..] ]
 
 
 --E)
-multiplos n limite = if (n * _) < limite then (n * _):(multiplos n limite) 
+euler n = sum [x | x <- [1..(n-1)], x `mod` 3 == 0 || x `mod` 5 == 0] 
+
+
+--random)
+multiplos n = [x | x <- [1..], x `mod` n == 0]
+multiplos' _ 0 = []
+multiplos' cantidadDeMultiplos n = multiplos' n (cantidadDeMultiplos - 1) ++ [cantidadDeMultiplos * n]
+
+
+
+
+
+--F)
+expandirAux _ 0 = []
+expandirAux n c = n:(expandirAux n (c-1))
+
+expandirAux' n = replicate n n
+
+expandir l = concat [ expandirAux' x | x <- l]
+
+expandir' l = foldr (++) [] [ expandirAux' x | x <- l]
+
+--tomopalabra cadena = concat (map (\ (letra,pos) -> repitoLetra letra pos) (zip cadena [1..]))
+
