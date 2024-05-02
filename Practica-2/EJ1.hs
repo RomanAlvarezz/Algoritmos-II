@@ -9,11 +9,15 @@ borrarUltimo (e:l) = e:(borrarUltimo l)
 --C)
 ls = [1,2,3]
 
-serie l = []:[ take i l | (_,i) <- (zip l [1..])]
+serie l = []:[ take i l | (_,i) <- zip l [1..] ]
 
-serie' (e1:l) = [ take i (e1:l) | (_,i) <- zip [0..length l + 1] (e1:e1:l) ]
+--serie' (e1:l) = [ take i (e1:l) | (_,i) <- zip [0..length l + 1] (e1:e1:l) ]
 
 serie'' (e1:l) = [ take i (e1:l) | (_,i) <- zip (e1:e1:l) [0..]] 
+
+serieR' [] = []
+serieR' xs = serieR' (borrarUltimo xs) ++ [xs]
+serieR xs = []:serieR' xs
 
 -- POR QUÉ serie' me da mal y serie'' me da bien???
 
@@ -56,3 +60,21 @@ repitoLetra letra n = letra:(repitoLetra letra (n-1))
 tomopalabra cadena = concat (map (\ (letra,pos) -> repitoLetra letra pos) (zip cadena [1..]))
 
 --longitudes'' l = map (\ x -> length x) l
+
+
+
+--ADICIONAL
+-- lasts [1,2,3] ---> [[],[3],[2,3],[1,2,3]]
+{- Ayudin
+serieR' [] = []
+serieR' xs = serieR' (borrarUltimo xs) ++ [xs]
+serieR xs = []:serieR' xs
+-}
+--lasts' [3,2,1] ---> [[],[3],[2,3],[1,2,3]]
+lasts1' [] = []
+lasts1' l = lasts1' (borrarUltimo l) ++ [ reverse l ]
+lasts1 l = []:lasts1' (reverse l) 
+
+-- lasts2' [] = []
+-- lasts2' l = lasts2' (borrarUltimo l) ++ [ reverse l ]
+-- lasts2 l = []:lasts2' l 
