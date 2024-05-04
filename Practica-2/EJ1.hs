@@ -6,6 +6,8 @@ borrarUltimo (e:l) = e:(borrarUltimo l)
 
 --B)
 
+
+
 --C)
 ls = [1,2,3]
 
