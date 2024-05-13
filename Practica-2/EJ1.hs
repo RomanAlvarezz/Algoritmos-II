@@ -61,6 +61,11 @@ repitoLetra letra n = letra:(repitoLetra letra (n-1))
 
 tomopalabra cadena = concat (map (\ (letra,pos) -> repitoLetra letra pos) (zip cadena [1..]))
 
+--ecco "hola" -> ["h","oo","lll","aaaa"]
+
+--ecco (e:l) = letraRepetida e : ecco l
+
+
 --longitudes'' l = map (\ x -> length x) l
 
 

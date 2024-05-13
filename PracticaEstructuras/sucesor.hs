@@ -9,17 +9,20 @@ ej2 = Succ (Succ (Succ (Succ Zero)) )
 1 --> Succ Zero (el sucesor de 0 es 1)
 2 --> Succ (Succ Zero) (el sucesor del sucesor de 0 es 2)
 -}
---recisar este codigo
---addSucc :: Int -> Nat -> Int 
---addSucc n Zero = n  --Aca retorna un entero
---addSucc n (Succ m) = Succ (addSucc n m) -- Aca retorna un Nat
+--revisar este codigo
+addSucc :: Nat -> Nat -> Int 
+addSucc n Zero = n  
+addSucc n (Succ m) = Succ (addSucc n m) 
 
+
+--Succ (Succ Zero) + Succ Zero = Succ (Succ (Succ Zero))
+--       2        +     1     = 3 
 {-
-addSucc 3 ej1
-addSucc 3 (Succ m) = Succ (addSucc 3 m)
-                           addSucc 3 (Succ m) = Succ (addSucc 3 m)
-                                                addSucc 3 Zero = 3   ????
+addSucc Succ (Succ Zero) Succ Zero = Succ (addSucc n m)
+                                   = Succ (Succ add (Succ Zero) Zero)
+                                   = Succ (Succ (Succ Zero))
 -}
+
 
 natToInt :: Nat -> Int
 natToInt Zero = 0
