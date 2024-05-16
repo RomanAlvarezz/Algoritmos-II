@@ -1,5 +1,3 @@
-module EJ8 where
-
 data Color = R | B deriving Show 
 data RBT a = E | T Color (RBT a) a (RBT a) deriving Show 
 
@@ -29,8 +27,3 @@ balance B (T R a x (T R b y c)) z d = T R (T B a x b) y (T B c z d)
 balance B a x (T R (T R b y c) z d) = T R (T B a x b) y (T B c z d)
 balance B a x (T R b y (T R c z d)) = T R (T B a x b) y (T B c z d)
 balance c l a r = T c l a r
-
---8)
-fromOrdList :: Ord a => [a] -> RBT a 
-fromOrdList [x] = insert x E
-fromOrdList (x:l) = insert x (fromOrdList l)
