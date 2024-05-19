@@ -44,3 +44,15 @@ checkBST (Nodo l n Hoja) = maximo l <= n && checkBST l
 checkBST (Nodo Hoja n r) = maximo r >= n && checkBST r
 checkBST (Nodo l n r) = maximo l <= n && maximo r >= n && checkBST l && checkBST r
         
+
+--Intento 2
+
+checkBST':: (Ord a) => Arbol a -> Bool -- esta funcion te dice si el arbol es binario o no
+--checkBST' Hoja = True
+checkBST' (Nodo Hoja n Hoja) = True
+checkBST' (Nodo l n Hoja) = maximo l <= n && checkBST' l
+checkBST' (Nodo Hoja n r) = minimo r >= n && checkBST' r
+checkBST' (Nodo l n r) = maximo l <= n && minimo r >= n && checkBST' l && checkBST' r
+
+a1 = Nodo (Nodo Hoja 5 Hoja) 10 (Nodo Hoja 14 Hoja)
+a2 = insert 10 a1

@@ -10,7 +10,7 @@ ej2 = Succ (Succ (Succ (Succ Zero)) )
 2 --> Succ (Succ Zero) (el sucesor del sucesor de 0 es 2)
 -}
 --revisar este codigo
-addSucc :: Nat -> Nat -> Int 
+addSucc :: Nat -> Nat -> Nat
 addSucc n Zero = n  
 addSucc n (Succ m) = Succ (addSucc n m) 
 
