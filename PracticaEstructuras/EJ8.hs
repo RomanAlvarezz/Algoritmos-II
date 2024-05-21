@@ -1,6 +1,6 @@
 module EJ8 where
 
-data Color = R | B deriving Show 
+data Color = R | B deriving (Eq,Show) 
 data RBT a = E | T Color (RBT a) a (RBT a) deriving Show 
 
 a1 = insert 55 E 
@@ -31,6 +31,18 @@ balance B a x (T R b y (T R c z d)) = T R (T B a x b) y (T B c z d)
 balance c l a r = T c l a r
 
 --8)
-fromOrdList :: Ord a => [a] -> RBT a 
-fromOrdList [x] = insert x E
-fromOrdList (x:l) = insert x (fromOrdList l)
+
+--fromOrdList :: Ord a => [a] -> RBT a 
+-- fromOrdList [x] = insert x E
+-- fromOrdList (x:l) = insert x (fromOrdList l)
+
+fromOrdList xs = makeBlack (if (even (truncate (logBase 2 (fromIntegral (length xs))))) then
+                 fromOrdList' xs R else fromOrdList' xs B)
+                        
+fromOrdList' [] c = E 
+fromOrdList' xs c = let n = div (length xs) 2 
+                        x = xs !! n 
+                        ant = take n xs 
+                        pos = drop (n+1) xs 
+                        c' = if c == R then B else R 
+                    in T c (fromOrdList' ant c') x (fromOrdList' pos c')
