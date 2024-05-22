@@ -1,7 +1,7 @@
 module EJ3 where
 --data Maybe a = Nothing | Just a
-type Nombre = [Char]
 --data Estado a = Est Nombre [a] deriving Show
+type Nombre = [Char]
 data Estado a = Est [(Nombre, a)] deriving Show
 
 e1 = Est [("n1",1),("n2",3),("n4",89)]
