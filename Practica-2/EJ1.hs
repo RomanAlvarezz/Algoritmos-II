@@ -48,6 +48,8 @@ rotar n (e:xs) = rotar (n - 1) (xs ++ [e])
 ror n xs = if n <= length xs then rotar n xs
             else error "n es mayor que length xs"
 
+            
+
 --G)
 --uptoConstructor n m = if n = m then [m] else uptoConstructor (n-1) m ++ [n-1] 
 uptoConstructor n m = if n == m then [m] else n:(uptoConstructor (n + 1) m)
