@@ -18,7 +18,7 @@ update nom x (Est xs) = Est (map (\ (n,y) -> if n == nom then (n,x) else (n,y)) 
 lookfor :: Nombre -> Estado a -> Maybe a 
 lookfor nom (Est []) = Nothing
 lookfor nom (Est ((n,x):xs)) | n == nom = Just x 
-                           | otherwise = lookfor nom (Est xs)
+                             | otherwise = lookfor nom (Est xs)
 
 free :: Nombre -> Estado a -> Estado a 
 free nom (Est []) = Est [] 

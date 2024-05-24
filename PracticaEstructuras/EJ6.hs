@@ -2,6 +2,9 @@ module EJ6 where
 
 data Arbol a = Hoja | Nodo (Arbol a) a (Arbol a) deriving Show 
 
+maximo' (Nodo _ x Hoja) = x
+maximo' (Nodo l x r) = maximo' r
+
 member:: (Ord a) => a -> Arbol a -> Bool 
 member _ Hoja = False 
 member x (Nodo l n r) | x == n = True 

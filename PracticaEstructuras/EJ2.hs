@@ -16,16 +16,16 @@ vacia = Lin "" 0
 -- c = cadena , p = cursor
 
 moverIzq :: Linea -> Linea 
-moverIzq (Lin c p) = if  0 < (p - 1) then Lin c (p - 1) else Lin c p
+moverIzq (Lin c p) = if  0 <= (p - 1) && c /= "" then Lin c (p - 1) else Lin c p
 
 moverDer :: Linea -> Linea 
-moverDer (Lin c p) = if  (p + 1) < length c then Lin c (p + 1) else Lin c p
+moverDer (Lin c p) = if  (p + 1) <= length c && c /= "" then Lin c (p + 1) else Lin c p
 
--- moverIni :: Linea -> Linea
--- moverIni (Lin c p) = Lin c 0
+moverIni :: Linea -> Linea
+moverIni (Lin c p) = Lin c 0
 
--- moverFin :: Linea -> Linea 
--- moverFin (Lin c p) = Lin c (length c - 1)
+moverFin :: Linea -> Linea 
+moverFin (Lin c p) = Lin c (length c)
 
 insertar :: Char -> Linea -> Linea
 insertar c (Lin cs p) = Lin (ins c p cs) (p + 1)
@@ -35,10 +35,13 @@ ins c 0 cs = c:cs
 ins c n (x:cs) = x:(ins c (n - 1) cs) 
 
 borrar :: Linea -> Linea 
-borrar (Lin cs p) = Lin (reverse (borr p (reverse cs))) (p - 1) --Si le agrego los reverse es como si borrara normal, es decir no con la tecla suprimir
+borrar (Lin cs p) = Lin (borrAux cs p) (p - 1) --Si le agrego los reverse es como si borrara normal, es decir no con la tecla suprimir
+
 
 borr 0 (x:cs) = cs   --Aca es como si borrar con suprimir
 borr n (x:cs) = x:(borr (n - 1) cs) 
+
+borrAux (x:xs) cur = if cur == 0 then xs else x: borrAux xs (cur - 1)
 
 {-
 --Aca intente hacer la funcion borr pero que no borre con suprimir pero salio mal

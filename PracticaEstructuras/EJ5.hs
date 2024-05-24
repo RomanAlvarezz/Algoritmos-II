@@ -26,8 +26,8 @@ checkBST:: (Ord a) => Arbol a -> Bool -- esta funcion te dice si el arbol es bin
 --checkBST Hoja = True
 checkBST (Nodo Hoja n Hoja) = True
 checkBST (Nodo l n Hoja) = maximo l <= n && checkBST l
-checkBST (Nodo Hoja n r) = maximo r >= n && checkBST r
-checkBST (Nodo l n r) = maximo l <= n && maximo r >= n && checkBST l && checkBST r
+checkBST (Nodo Hoja n r) = minimo r >= n && checkBST r
+checkBST (Nodo l n r) = maximo l <= n && minimo r >= n && checkBST l && checkBST r
 
 insert :: Ord a => a -> Arbol a -> Arbol a 
 insert x Hoja = Nodo Hoja x Hoja 

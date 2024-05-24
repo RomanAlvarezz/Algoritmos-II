@@ -22,3 +22,6 @@ suma (Succ n1) n2 = Succ (suma n1 n2)
 nat2int :: Nat -> Int
 nat2int Cero = 0
 nat2int (Succ n) = 1 + nat2int n
+
+data Lista a = Null | Cons ([Char], a) (Lista a) 
+--Cons :: ([Char], a) -> Lista a -> Lista a
